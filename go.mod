@@ -1,6 +1,6 @@
 module github.com/Project-HAMi/ascend-device-plugin
 
-go 1.22.2
+go 1.24.6
 
 require (
 	github.com/Project-HAMi/HAMi v0.0.0
@@ -57,6 +57,6 @@ require (
 )
 
 replace (
-	github.com/Project-HAMi/HAMi v0.0.0 => github.com/Project-HAMi/HAMi v0.0.0-20250107033239-d04fc8baaad6
+	github.com/Project-HAMi/HAMi v0.0.0 => github.com/Project-HAMi/HAMi v0.0.0-20250901013025-61c6cbe7d480
 	huawei.com/npu-exporter/v6 => gitee.com/ascend/ascend-npu-exporter/v6 v6.0.0-RC3
 )
