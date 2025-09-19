@@ -25,6 +25,7 @@ import (
 	"path"
 	"time"
 
+	"github.com/Project-HAMi/HAMi/pkg/device"
 	"github.com/Project-HAMi/HAMi/pkg/device/ascend"
 	"github.com/Project-HAMi/HAMi/pkg/util"
 	"github.com/Project-HAMi/HAMi/pkg/util/nodelock"
@@ -190,7 +191,7 @@ func (ps *PluginServer) registerKubelet() error {
 
 func (ps *PluginServer) registerHAMi() error {
 	devs := ps.mgr.GetDevices()
-	apiDevices := make([]*util.DeviceInfo, 0, len(devs))
+	apiDevices := make([]*device.DeviceInfo, 0, len(devs))
 	// hami currently believes that the index starts from 0 and is continuous.
 	for i, dev := range devs {
 		apiDevices = append(apiDevices, &util.DeviceInfo{
@@ -205,7 +206,7 @@ func (ps *PluginServer) registerHAMi() error {
 		})
 	}
 	annos := make(map[string]string)
-	annos[ps.registerAnno] = util.MarshalNodeDevices(apiDevices)
+	annos[ps.registerAnno] = device.MarshalNodeDevices(apiDevices)
 	annos[ps.handshakeAnno] = "Reported_" + time.Now().Add(time.Duration(*reportTimeOffset)*time.Second).Format("2006.01.02 15:04:05")
 	node, err := util.GetNode(ps.nodeName)
 	if err != nil {
